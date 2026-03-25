@@ -1,6 +1,4 @@
-import { db } from 'astro:db';
-
-// https://astro.build/db/seed
+// No seed data for course-tracker V1.
 export default async function seed() {
-	// TODO
+  return;
 }

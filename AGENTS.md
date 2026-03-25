@@ -26,5 +26,6 @@ MANDATORY: After completing each task, update this repo’s AGENTS.md Task Log (
 
 ## Task Log (Recent)
 - Keep newest first; include date and short summary.
+- 2026-03-25 Implemented course-tracker V1 (Astro DB Courses schema + indexed ownership/status lookups, secured action suite, Alpine global store, /app workspace + detail routes, and dashboard/notification webhook integration) with validation checks via npm run build.
 - 2026-02-09 Added repo-level AGENTS.md enforcement contract (workspace reference + mandatory task-log update rule).
 - 2026-02-09 Initialized repo AGENTS baseline for single-repo Codex/AI safety.
