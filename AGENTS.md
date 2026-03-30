@@ -25,6 +25,7 @@ MANDATORY: After completing each task, update this repo’s AGENTS.md Task Log (
 - Review this repo's existing AGENTS.md Task Log history before making changes.
 
 ## Task Log (Recent)
+- 2026-03-30 Populated app-spec.md with implementation-aligned V1 documentation based on freeze verification.
 - 2026-03-30 Initialized app-spec.md using standard V1 template from web repo.
 - 2026-03-29 Repaired freeze-blocking schema/runtime issues: kept `userId` as the canonical ownership field, cleared the stale empty remote Astro DB snapshot/tables (`ownerId` schema) so `npm run db:push` could recreate the current schema safely, fixed Alpine store typing in `src/alpine.ts`, and revalidated authenticated `/app`, browser CRUD flow, `npm run db:push`, `npm run typecheck`, and `npm run build`.
 - 2026-03-29 Completed readiness tooling alignment: installed local typecheck dependencies, standardized `db:push` support, preserved app-specific production DB isolation config, and prepared repo for freeze-safe commit/push without app logic changes.
