@@ -1,22 +1,157 @@
 ---
 import AppShell from "../layouts/AppShell.astro";
-import { AvButton, AvContainer } from "@ansiversa/components";
+import LandingPageStandard from "../components/landing/LandingPageStandard.astro";
+import type { LandingPageContent } from "../lib/landing";
+
+const title = "Course Tracker | Ansiversa";
+const description = "Track courses, progress, and completion in a personal learning workspace.";
+const rootAppUrl = Astro.locals.rootAppUrl ?? "https://ansiversa.com";
+const appUrl = new URL("/app", Astro.url).toString();
+const signInUrl = new URL("/login", rootAppUrl);
+signInUrl.searchParams.set("returnTo", appUrl);
+const startHref = Astro.locals.isAuthenticated ? "/app" : signInUrl.toString();
+
+const landingContent: LandingPageContent = {
+  categoryLabel: "Progress Tracking",
+  appLabel: "Authenticated DB-backed workspace",
+  title: "Track courses with clarity instead of scattered progress notes.",
+  subtitle:
+    "Create course records, update progress, mark completion, and archive or restore courses in a personal workspace built for steady learning follow-through.",
+  heroBullets: [
+    "Capture course records with progress, status, and completion context in one place",
+    "Update course progress and completion state from the workspace and detail flow",
+    "Archive and restore older courses without losing the learning history",
+  ],
+  primaryCta: {
+    label: Astro.locals.isAuthenticated ? "Open Workspace" : "Sign in to Open",
+    href: startHref,
+  },
+  secondaryCta: {
+    label: "See Workflow",
+    href: "#workflow",
+    variant: "ghost",
+  },
+  heroNote:
+    "Current V1 is a personal course-tracking workspace. It is not an LMS, classroom platform, or AI recommendation system.",
+  heroPanel: {
+    eyebrow: "Course flow",
+    title: "Create → Track → Revisit",
+    steps: [
+      "1. Create the course record in the protected workspace",
+      "2. Update progress and completion as the course moves forward",
+      "3. Archive older courses without deleting the history",
+    ],
+    meta: [
+      { value: "DB", label: "Persistence" },
+      { value: "Per-user", label: "Ownership" },
+    ],
+  },
+  features: {
+    title: "What Course Tracker gives you in V1",
+    lead:
+      "The product is built for structured personal course tracking, not for teacher/student management or classroom administration.",
+    items: [
+      {
+        title: "Structured course records",
+        description:
+          "Keep the course title, status, progress, and learning context together in one owner-scoped record.",
+      },
+      {
+        title: "Progress and completion control",
+        description:
+          "Update course progress and completion state so the record reflects where you actually are.",
+      },
+      {
+        title: "Safe detail review",
+        description:
+          "Open the course detail route to review or update the full record without exposing another user’s data.",
+      },
+      {
+        title: "Archive-safe history",
+        description:
+          "Move completed or paused courses out of the active set while keeping them available for future reference.",
+      },
+    ],
+  },
+  pillars: {
+    title: "Why this works better than a flat study checklist",
+    lead:
+      "The product stays focused on one user’s course records, which is exactly what keeps the tracking workflow clear and dependable.",
+    items: [
+      {
+        title: "Truthful product boundary",
+        description:
+          "This is a personal course/progress workspace, not an LMS or shared classroom management system.",
+      },
+      {
+        title: "Progress-first structure",
+        description:
+          "The record model makes course progress and completion state first-class instead of burying them in generic notes.",
+      },
+      {
+        title: "Safe progress validation",
+        description:
+          "The app blocks invalid progress combinations so course records stay coherent while you update them.",
+      },
+      {
+        title: "Protected personal access",
+        description:
+          "Protected routes and safe route fallback keep one user’s course library private and dependable.",
+      },
+    ],
+  },
+  workflow: {
+    eyebrow: "How it works",
+    title: "Move from course setup to reliable progress tracking",
+    lead:
+      "The workflow is designed for one user managing course progress over time without rebuilding context on every return.",
+    steps: [
+      {
+        title: "Create the course",
+        description:
+          "Start in the protected workspace and save the course record you want to track.",
+      },
+      {
+        title: "Update progress cleanly",
+        description:
+          "Use the course detail and workspace flows to adjust progress and completion state as the course moves forward.",
+      },
+      {
+        title: "Archive and revisit when needed",
+        description:
+          "Move finished or paused courses out of the active set without deleting the history you may need later.",
+      },
+    ],
+  },
+  showcase: {
+    eyebrow: "Current product shape",
+    title: "Built for personal course tracking, not classroom software",
+    description:
+      "The landing copy stays aligned to the verified implementation: Course Tracker helps one authenticated user manage DB-backed course records with progress, completion, archive, and restore flows.",
+    bullets: [
+      "Good fit for personal learning, self-paced study, and individual course follow-through",
+      "Centered on manual course tracking, progress updates, archive/restore, and safe detail review",
+    ],
+    calloutLabel: "Freeze truth",
+    calloutValue: "Personal course workspace only",
+  },
+  finalCta: {
+    title: "Start tracking the next course with more clarity",
+    description:
+      "Open the workspace, save the course properly, and keep progress and completion visible as you move through it.",
+    primaryCta: {
+      label: Astro.locals.isAuthenticated ? "Open Workspace" : "Sign in to Open",
+      href: startHref,
+    },
+    secondaryCta: {
+      label: "Review Features",
+      href: "#features",
+      variant: "ghost",
+    },
+  },
+};
 ---
 
-<AppShell title="Course Tracker" description="Plan, track, and finish courses with clarity.">
-  <section class="av-hero">
-    <AvContainer size="narrow" className="av-hero__content--narrow">
-      <div class="av-hero__content">
-        <div class="av-kicker"><span>Ansiversa · Learning OS</span></div>
-        <h1 class="av-gradient-text">Finish more courses with less friction.</h1>
-        <p>
-          Course Tracker gives you a clean command center for every class, cohort, and self-paced
-          program—so progress stays visible every day.
-        </p>
-      </div>
-      <div class="av-cta-row">
-        <AvButton href="/app">Open workspace</AvButton>
-      </div>
-    </AvContainer>
-  </section>
+<AppShell title={title} description={description}>
+  <LandingPageStandard content={landingContent} />
 </AppShell>
